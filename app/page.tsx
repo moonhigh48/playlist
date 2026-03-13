@@ -32,8 +32,8 @@ export default function ReceiptifyWithNotion() {
       method: 'GET',
       headers: {
       'Content-Type': 'application/json',
-      },
-      });
+      },}
+      const data = await res.json(););
       
       // 오류 방지: data가 배열일 때만 저장, 아닐 경우 에러 처리
       if (Array.isArray(data)) {

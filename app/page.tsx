@@ -27,8 +27,13 @@ export default function ReceiptifyWithNotion() {
     if (!username) return alert('유저네임을 입력해주세요!');
     setLoading(true);
     try {
-      const res = await fetch(`/api/playlist?user=${username}`);
-      const data = await res.json();
+      // page.tsx의 fetch 부분 수정
+      const res = await fetch(`/api/playlist?user=${encodeURIComponent(username)}`, {
+      method: 'GET',
+      headers: {
+      'Content-Type': 'application/json',
+      },
+      });
       
       // 오류 방지: data가 배열일 때만 저장, 아닐 경우 에러 처리
       if (Array.isArray(data)) {
